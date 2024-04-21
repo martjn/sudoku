@@ -44,7 +44,11 @@ function RenderGrid({
                   handleFocus={handleFocus}
                   handleBlur={handleBlur}
                   activeCell={activeCell}
-                  inTheSameBlock={inTheSameBlock(activeCell, rowIndex, columnIndex)}
+                  inTheSameBlock={inTheSameBlock(
+                    activeCell,
+                    rowIndex,
+                    columnIndex
+                  )}
                 />
               );
             })}

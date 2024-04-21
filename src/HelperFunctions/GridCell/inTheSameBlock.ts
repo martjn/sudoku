@@ -102,15 +102,107 @@ const blocks = [
   ],
 ];
 
-export const inTheSameBlock = (activeCell: activeCellState, x: number, y: number) => {
-  const activecell = {x: activeCell.x as number, y: activeCell.y as number}
-  const givencell = {x: x, y: y}
-  let result = false;
-  blocks.forEach((block) => {
-    if(block.includes(activecell) && block.includes(givencell)){
-      console.log("block: ", block)
-      result = true;
-    }
-  })
-  return result;
+const blocksAssociatedWithCells = {
+  "cell00": blocks[0],
+  "cell01": blocks[0],
+  "cell02": blocks[0],
+  "cell10": blocks[0],
+  "cell11": blocks[0],
+  "cell12": blocks[0],
+  "cell20": blocks[0],
+  "cell21": blocks[0],
+  "cell22": blocks[0],
+
+    "cell03": blocks[1],
+    "cell04": blocks[1],
+    "cell05": blocks[1],
+    "cell13": blocks[1],
+    "cell14": blocks[1],
+    "cell15": blocks[1],
+    "cell23": blocks[1],
+    "cell24": blocks[1],
+    "cell25": blocks[1],
+
+    "cell06": blocks[2],
+    "cell07": blocks[2],
+    "cell08": blocks[2],
+    "cell16": blocks[2],
+    "cell17": blocks[2],
+    "cell18": blocks[2],
+    "cell26": blocks[2],
+    "cell27": blocks[2],
+    "cell28": blocks[2],
+
+    "cell30": blocks[3],
+    "cell31": blocks[3],
+    "cell32": blocks[3],
+    "cell40": blocks[3],
+    "cell41": blocks[3],
+    "cell42": blocks[3],
+    "cell50": blocks[3],
+    "cell51": blocks[3],
+    "cell52": blocks[3],
+
+    "cell33": blocks[4],
+    "cell34": blocks[4],
+    "cell35": blocks[4],
+    "cell43": blocks[4],
+    "cell44": blocks[4],
+    "cell45": blocks[4],
+    "cell53": blocks[4],
+    "cell54": blocks[4],
+    "cell55": blocks[4],
+
+    "cell36": blocks[5],
+    "cell37": blocks[5],
+    "cell38": blocks[5],
+    "cell46": blocks[5],
+    "cell47": blocks[5],
+    "cell48": blocks[5],
+    "cell56": blocks[5],
+    "cell57": blocks[5],
+    "cell58": blocks[5],
+
+    "cell60": blocks[6],
+    "cell61": blocks[6],
+    "cell62": blocks[6],
+    "cell70": blocks[6],
+    "cell71": blocks[6],
+    "cell72": blocks[6],
+    "cell80": blocks[6],
+    "cell81": blocks[6],
+    "cell82": blocks[6],
+
+    "cell63": blocks[7],
+    "cell64": blocks[7],
+    "cell65": blocks[7],
+    "cell73": blocks[7],
+    "cell74": blocks[7],
+    "cell75": blocks[7],
+    "cell83": blocks[7],
+    "cell84": blocks[7],
+    "cell85": blocks[7],
+
+    "cell66": blocks[8],
+    "cell67": blocks[8],
+    "cell68": blocks[8],
+    "cell76": blocks[8],
+    "cell77": blocks[8],
+    "cell78": blocks[8],
+    "cell86": blocks[8],
+    "cell87": blocks[8],
+    "cell88": blocks[8],
+};
+export const inTheSameBlock = (
+  _activeCell: activeCellState,
+  rowIndex: number,
+  colIndex: number
+): boolean => {
+  const activeCell = { x: _activeCell.x, y: _activeCell.y };
+  const activeCellXString = activeCell.x === null ? '' : activeCell.x.toString();
+  const activeCellYString = activeCell.y === null ? '' : activeCell.y.toString();
+  const activeCellIndexString = `cell${activeCellXString}${activeCellYString}`
+  const givenCellIndexString = `cell${rowIndex}${colIndex}`
+
+  return (blocksAssociatedWithCells as any)[activeCellIndexString] === (blocksAssociatedWithCells as any)[givenCellIndexString];
 };
